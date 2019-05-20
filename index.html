@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/todos.css">
+    <link rel="stylesheet" href="fontawesome-free-5.8.2-web/css/all.css">
+    <link rel="stylesheet" href="assets/css/materialize.css">
+    <script src="assets/js/lib/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h4>To-Do List<i class="fas fa-plus-circle"></i></h4>
+           <!--  <input placeholder="Add new todo" type="text">  -->
+            
+            <!-- <i class="fas fa-microphone"></i> -->
+
+            <div class="inputWithIcon input-field">
+                <i href="#record" class="prefix modal-trigger fas fa-microphone fa-lg fa-fw" aria-hidden="true"></i>
+                <input type="text" aria-multiline="true" placeholder="Placeholder">
+                <label for="add_todo">Add New Todo</label>
+              </div>
+
+              <div class="modal" id="record">
+                <div class="modal-content">
+                    <h3> Record Voice Note </h3> 
+                    <p>
+                        <button class="btn" id="startRecord"> <i class="fas fa-play-circle"></i> </button>
+                        <button class="modal-close btn red" id="stopRecord" disabled><i class="fas fa-stop-circle"></i> </button>
+                        <br>
+                        <p> This record will end in <button id="countdowntimer">20 </button> Seconds</p>
+                    </p>
+                </div>
+              </div>
+              <!-- <audio id="player" controls></audio> -->
+        <ul>
+            <!-- <li> <span><i class="fa fa-trash fa-xs"></i></span> Praise God for 5 mins</li>
+            <li> <span><i class="fa fa-trash fa-xs"></i></span> Wash Clothes in the washing machine</li>
+            <li> <span><i class="fa fa-trash fa-xs"></i></span> Go to Coldstone</li> -->
+        </ul>
+    </div>
+
+    <script src="assets/js/lib/materialize.js"></script>
+    <script src="assets/js/todos.js"></script>
+    
+</body>
+</html>

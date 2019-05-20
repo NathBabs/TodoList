@@ -1,0 +1,165 @@
+@import url("fontawesome.css");
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+@font-face {
+    font-family: 'Roboto';
+    src: url(C:/Users/asus/Documents/JavascriptTut/TodoListProject/assets/fonts/Roboto-Bold.ttf);
+    src: url(C:/Users/asus/Documents/JavascriptTut/TodoListProject/assets/fonts/Roboto-Light.ttf);
+    src: url(C:/Users/asus/Documents/JavascriptTut/TodoListProject/assets/fonts/Roboto-Medium.ttf);
+    src: url(C:/Users/asus/Documents/JavascriptTut/TodoListProject/assets/fonts/Roboto-Regular.ttf);
+    font-weight: bold;
+}
+
+body {
+    font-family: Roboto;
+    background-image: linear-gradient(to right, #00AAFF , #00FF6C);
+}
+
+#container {
+    border: 2px solid grey;
+    width: 400px;
+    margin: 100px auto;
+    background-color: #f7f7f7;
+    /* box-shadow: 10 10 5px 0px rgba(0, 0, 0, 0.5); */
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    
+}
+
+h4 {
+    background: #2980b9;
+    color: white;
+    margin: 0 !important;
+    padding: 10px 20px !important;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+input {
+    font-size: 18px;
+    background-color: #f7f7f7;
+    width: 100%;
+    padding: 13px 13px 13px 20px !important;
+    padding-right: 0px;
+    box-sizing: border-box !important;
+    color: #2980b9;
+    border: 3px solid rgba(0,0,0,0) !important;
+    word-break: break-all;
+    word-wrap: break-word;
+ 
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    /* height: 40px; */
+    background: white;
+    /* padding: 5px 7px; */
+    line-height: 30px;
+    color: #666;
+    word-break: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    /* overflow-y: scroll; */
+}
+
+span {
+    text-align: center;
+    /* padding: 2px 10px; */
+    background: red;
+    color: whitesmoke;
+    height: 30px;
+    margin-right: 20px;
+    width: 0;
+    display: inline-block;
+    -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  opacity: 0;
+}
+
+/* .wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.wrapper::after {
+    font-family: 'FontAwesome';
+    content: "\f130";
+        position: absolute;
+        right: 6px;
+} */
+
+.completed {
+    color: gray;
+    text-decoration: line-through;
+}
+
+li:nth-child(2n) {
+    background: #f7f7f7;
+}
+
+input:focus {
+    background: #fff;
+    outline: none;
+    border: 3px solid #2980b9;
+}
+
+.fa-plus-circle {
+    float: right;
+}
+
+li:hover span {
+    width: 40px;
+    opacity: 1.0;
+}
+.inputWithIcon input[type="text"] {
+    padding-left: 0px !important;
+  }
+
+  .inputWithIcon {
+    position: relative;
+  }
+  .inputWithIcon i {
+    position: absolute;
+    left: 0 !important;
+    top: 8px !important;
+    padding: 9px 8px !important;
+    color: #aaa;
+    transition: 0.3s;
+  }
+
+  .inputWithIcon input[type="text"]:focus + i {
+    color: dodgerBlue;
+  }
+
+  p {
+      text-align: center;
+  }
+
+  h3 {
+      text-align: center;
+  }
+
+  audio {
+      line-height: 40px;
+      width: 300px;
+      margin: auto;
+      padding-left: 100px;
+  }
+
+  #playRecord {
+      text-align: center;
+      margin: auto;
+      padding-left: 198px;
+  }
+
+  #countdowntimer {
+      color: red;
+  }
