@@ -2,6 +2,8 @@
 /* eslint-disable react/require-extension */
 /* eslint-disable react/jsx-sort-prop-types */
 var todoText;
+//create array to hold audio binary data
+audioChunks = [];
 
 $(document).ready(function () {
     $('.modal').modal();
@@ -62,18 +64,42 @@ function handlerFunction(stream) {
         if (rec.state === 'inactive') {
             todoText = $("input[type='text']").val();
             let blob = new Blob(audioChunks, {type:'audio/mpeg-3'});
-            $('ul').append('<li><span><i class="fa fa-trash fa-xs"></i></span>' + todoText +  '<br> <i id="playRecord" class="fas fa-play-circle"></i>  <audio id="recordedAudio"></audio></li>');
-            $('#recordedAudio').attr('src', URL.createObjectURL(blob));
-        
-            $('#recordedAudio').attr('controls', false);
-        
-            $('#recordedAudio').attr('autoplay', false);
-        
-            store.push(blob);
+
+            let details = {
+                todoText: todoText,
+                blob: blob
+            };
+            store.push(details);
+            //console.log(store);
+
+          
+            for (let i = 0; i < store.length; i++) {
+                /* const element = array[i]; */
+                var id = '"#recordedAudio' + [i] + '"';
+                $('ul').append('<li><span><i class="fa fa-trash fa-xs"></i></span>' + store[i].todoText +  '<br> <i id="playRecord" class="fas fa-play-circle"></i>  <audio id="recordedAudio' + [i] + '"></audio></li>');
+                $(id).attr('src',store[i].blob);   /* URL.createObjectURL(blob) */
+            
+                $(id).attr('controls', false);
+            
+                $(id).attr('autoplay', false);
+            
+            }
+            
+            
+            
+            /* details.blob = blob;
+            details.todoText = todoText; */
+
+            
+            
+           
+           
+            /* store.push(blob); */
             /* sendData(blob); */
         }
     };
 }
+
 
 
 $('#startRecord').on('click', function(event) {
@@ -81,9 +107,7 @@ $('#startRecord').on('click', function(event) {
     $(this).attr('disabled', true);
     /* $(this).css('background-color', 'blue'); */
     $('#stopRecord').attr('disabled', false);
-    //create array to hold audio biinary data
-    audioChunks = [];
-
+    
     //start recording
     rec.start();
 
@@ -98,8 +122,13 @@ $('#startRecord').on('click', function(event) {
 
         //timeout function to stop recording after 20 seconds
     setTimeout(() => {
-        rec.stop();
+        if (rec.state === 'inactive') {
+            //do nothing
+        } else {
+            rec.stop();
+        }
     }, 20000);
+    
 });
 
 $('#stopRecord').on('click', function(event){
