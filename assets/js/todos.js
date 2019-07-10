@@ -55,7 +55,6 @@ var store = [];
   navigator.mediaDevices.getUserMedia({ audio: true})
       .then(stream => {handlerFunction(stream);});
 
-
 function handlerFunction(stream) {
     rec = new MediaRecorder(stream);
     //wait for the streamed audio data to become available then execute a callback function to handle the data
@@ -71,36 +70,33 @@ function handlerFunction(stream) {
             };
             store.push(details);
             //console.log(store);
+            localStorage.setItem('id', JSON.stringify(details));
 
           
             for (let i = 0; i < store.length; i++) {
                 /* const element = array[i]; */
-                var id = '"#recordedAudio' + [i] + '"';
+                //id = '"#recordedAudio' + [i] + '"';
                 $('ul').append('<li><span><i class="fa fa-trash fa-xs"></i></span>' + store[i].todoText +  '<br> <i id="playRecord" class="fas fa-play-circle"></i>  <audio id="recordedAudio' + [i] + '"></audio></li>');
-                $(id).attr('src',store[i].blob);   /* URL.createObjectURL(blob) */
-            
-                $(id).attr('controls', false);
-            
-                $(id).attr('autoplay', false);
-            
+                let id = '"#recordedAudio' + [i] + '"';
+                let selector = $('audio');
+                let src = URL.createObjectURL(store[i].blob);
+                $(selector).attr('src',src);  
+                /* $(selector).attr('src',store[i].blob);   */
+                $(selector).attr('controls', true);
+                $(selector).attr('autoplay', true);
+
+             
+             console.log(id);
+             console.log(store[i].blob);
             }
             
-            
-            
-            /* details.blob = blob;
-            details.todoText = todoText; */
-
-            
-            
-           
-           
-            /* store.push(blob); */
-            /* sendData(blob); */
         }
     };
 }
 
-
+let downloadTimer;
+let timerFunction;
+let timeleft;
 
 $('#startRecord').on('click', function(event) {
     console.log('i was clicked');
@@ -113,7 +109,7 @@ $('#startRecord').on('click', function(event) {
 
     //20 seconds timer countdown
     var timeleft = 20;
-        var downloadTimer = setInterval(function(){
+        downloadTimer = setInterval(function(){
         timeleft--;
         $("#countdowntimer").text(timeleft); 
         if(timeleft <= 0)
@@ -121,13 +117,14 @@ $('#startRecord').on('click', function(event) {
         },1000);
 
         //timeout function to stop recording after 20 seconds
-    setTimeout(() => {
+    timerFunction = setTimeout(() => {
         if (rec.state === 'inactive') {
             //do nothing
         } else {
             rec.stop();
         }
     }, 20000);
+
     
 });
 
@@ -137,7 +134,11 @@ $('#stopRecord').on('click', function(event){
     $('#startRecord').attr('disabled', false);
     //disable stop record button
     $(this).attr('disabled', true);
+    clearTimeout(timerFunction);
+    clearInterval(downloadTimer);
     rec.stop();
+    timeleft = 20;
+    $("#countdowntimer").text(timeleft);
     counter ++;
 });
 
@@ -163,13 +164,19 @@ $('ul').on('click', '#playRecord',function(e) {
 });
 
 
+//Local Storage
 
-/* function sendBlob(blb) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://9eb3dd07-5cca-4afd-b913-c6b7fa074c3f.mock.pstmn.io', true);
-    xhr.onload = function(e) {
-        console.log('Sent');
-    };
-    xhr.send(blb);
-}
- */
+localStorage.setItem('name', 'Juan');
+
+//add to session storage
+//sessionStorage.setItem('name', 'Juan');
+
+//remove from local storage
+//localStorage.removeItem('name');
+
+//read the value
+//const name = localStorage.getItem('name');
+//console.log(name);
+
+//Clear local storage
+//localStorage.clear();
